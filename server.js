@@ -40,7 +40,7 @@ app.post('/api/users',
         check(
             'password',
             'Please enter a password with 6 or more characters'
-            ),isLength({ min: 6 })
+            ).isLength({ min: 6 })
         ],
         (req, res) => {
             const errors = validationResult(req);
