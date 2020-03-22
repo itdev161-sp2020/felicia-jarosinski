@@ -1,7 +1,7 @@
 import express from 'express';
 import connectDatabase from './config/db';
 import {check, validationResult} from 'express-validator';
-import cors from 'cors';
+//import cors from 'cors';
 
 //initialize express application
 
