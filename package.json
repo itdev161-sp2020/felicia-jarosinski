@@ -1,0 +1,36 @@
+{
+  "name": "felicia-jarosinski",
+  "version": "1.0.0",
+  "description": "felicia-jarosinski",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node -r esm server.js",
+    "server": "nodemon -r esm server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \" npm run server\" \" npm run client\"" 
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itdev161-sp2020/felicia-jarosinski.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/itdev161-sp2020/felicia-jarosinski/issues"
+  },
+  "homepage": "https://github.com/itdev161-sp2020/felicia-jarosinski#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "express-validator": "^6.4.0",
+    "mongoose": "^5.9.3"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0",
+    "nodemon": "^2.0.2"
+  }
+}
