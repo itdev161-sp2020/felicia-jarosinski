@@ -45,7 +45,7 @@ app.post('/api/users',
         (req, res) => {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
-                return res.status(422).json({ errors.array() });
+                return res.status(422).json({ errors: errors.array() });
             } else {
                 return res.send(req.body);
             }
