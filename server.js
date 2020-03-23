@@ -1,8 +1,8 @@
 import express from 'express';
+
 import connectDatabase from './config/db';
 import {check, validationResult} from 'express-validator';
 //import cors from 'cors';
-
 //initialize express application
 
 const app = express();
@@ -22,11 +22,9 @@ app.use(express.json({extended: false}));
  * @route GET
  * @desc Test endpoint
  */
-
 app.get('/', (req, res) =>
     res.send('http get request sent to root api endpoint')
     );
-
 /**
  * @route POST api/user
  * @desc Register user
@@ -58,3 +56,6 @@ const port = 3000;
 app.listen(port, () => 
 console.log ('Express server running on port 3000')
 );
+=======
+//connection listener
+app.listen(3000, () => console.log ('Express server running on port 3000'));
