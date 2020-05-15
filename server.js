@@ -27,23 +27,25 @@ app.use(
  * @desc Test endpoint
  */
 app.get('/', (req, res) =>
-    res.send('http get request sent to root api endpoint')
-    );
+    res.send('http get request sent to root api endpoint'),
+    )
 /**
  * @route POST api/user
  * @desc Register user
 **/   
-app.post('/api/users',
+app.post(
+    '/api/users',
     [
         check ('name', 'Please enter your name')
         .not()
         .isEmpty(), 
-        check('email', 'Please enter a valid email').isEmail(),
+        check('email', 'Please enter a valid email')
+        .isEmail(),
         check(
-            'password',
-            'Please enter a password with 6 or more characters'
+            'password','Please enter a password with 6 or more characters'
             ).isLength({ min: 6 })
         ],
+
     async (req, res) => {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
@@ -72,6 +74,7 @@ app.post('/api/users',
                     await user.save();
 
                     //generate and return a JWT token
+                
                     const payload = {
                         user: {
                             id: user.id
@@ -93,18 +96,7 @@ app.post('/api/users',
             }
         }   
 );
-/**
- * @route GET api/auth
- * @desc Authenticate user
- */
-app.get('/api/auth', auth, async (req, res) => {
-    try {
-        const user = await User.findById(req.user.id);
-        res.status(200).json(user);
-    } catch (error) {
-        res.status(500).send('Unknown server error');
-    }
-});
+
 
 //connection listener
 const port = 5000;
