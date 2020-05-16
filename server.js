@@ -100,8 +100,7 @@ app.post(
 
 //connection listener
 const port = 5000;
-app.listen(port, () => 
-console.log ('Express server running on port ${port}'));
+app.listen(port, () => console.log (`Express server running on port ${port}`));
 
 //connection listener
 //app.listen(3000, () => console.log ('Express server running on port 3000'));
