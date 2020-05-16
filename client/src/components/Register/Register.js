@@ -85,7 +85,7 @@ const Register = () => {
         <button onClick={() => register()}>Register</button>
         </div>
     </div>
-    )
+    );
 }
 
 export default Register
