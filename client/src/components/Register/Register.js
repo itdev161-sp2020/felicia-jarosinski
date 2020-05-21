@@ -14,6 +14,7 @@ const Register = ({authenticateUser}) => {
 
     const {name, email, password, passwordConfirm} = userData;
     const{errors}=errorData;
+   
     const onChange = e => {
         const {name, value} = e.target;
         setUserData({
@@ -47,14 +48,16 @@ const Register = ({authenticateUser}) => {
                 history.push('/')
 
             } catch (error) {
+                //clear user data and set errors
                 localStorage.removeItem('token');
                 setErrorData({
                     ...errors,
                     errors:error.response.data.errors
                 })
             }
+            authenticateUser();
         }
-        authenticateUser();
+        
     }
     return (
         <div>
@@ -95,12 +98,13 @@ const Register = ({authenticateUser}) => {
         <button onClick={() => registerUser()}>Register</button>
         </div>
         <div>
-        {errors && error.map(error => <div key ={error.msg}>{error.msg}</div>)}
+        {errors && errors.map(error => 
+            <div key ={error.msg}>{error.msg}</div>)}
         </div>
         </div>
         
         
-    );
+    )
 }
 
 export default Register
