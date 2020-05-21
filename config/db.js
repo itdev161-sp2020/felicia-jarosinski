@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import config from 'config';
 
 //get the connection string
-const db = config.get('mongoURI');
+const db = config.get('mongoURL');
 
 //Connect to Mongo DB
 const connectDatabase = async () => {
