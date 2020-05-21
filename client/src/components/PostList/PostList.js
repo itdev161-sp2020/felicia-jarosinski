@@ -8,6 +8,7 @@ const PostList = props =>{
         key={post._id}
         post={post}
         clickPost={clickPost}
+        deletePost={deletePost}
         />
     ));
 };
