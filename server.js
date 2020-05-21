@@ -29,9 +29,9 @@ app.use(
 app.get('/', (req, res) =>
     res.send('http get request sent to root api endpoint'),
     );
-app.get('/api/', (res, req) => res.send('http get request sent to api'));
+app.get('/api/', (req, res) => res.send('http get request sent to api'));
 
-app.post(
+/* app.post(
     '/api/users',
     [
         check('name', 'Please enter your name').not().isEmpty(),
@@ -71,7 +71,7 @@ app.post(
             }
         }
     }
-);
+); */
 /**
  * @route POST api/user
  * @desc Register user
@@ -98,7 +98,7 @@ app.post(
                 try {
                     //Check if user exists
                     let user = await User.findOne({ email: email});
-                    if (!user) {
+                    if (user) {
                         return res
                             .status (400)
                             .json({ errors: [{ msg: 'User already exists'}] });
@@ -119,13 +119,14 @@ app.post(
                     //generate and return a JWT token
                     returnToken(user, res);
                     
+                    
                 }   catch (error){
                     res.status(500).send('Server error');
                 }
             }
         }   
 );
-/*
+/** 
 *@route GET api/auth
 *@desc Authenticate
 */
@@ -175,8 +176,8 @@ app.post(
             }
         }
     }
-);
-const returnToken = (user, res)=>{
+); 
+    const returnToken = (user, res)=>{
     const payload={
         user: {
             id:user.id
@@ -188,7 +189,7 @@ const returnToken = (user, res)=>{
         {expiresIn:'10hr'},
         (err, token)=>{
             if(err) throw err;
-            res.json({token:taken});
+            res.json({token:token});
         }
     );
 };
