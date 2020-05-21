@@ -19,36 +19,37 @@ const Login = ({authenticateUser}) => {
         setUserData({
             ...userData,
             [name]: value
-        })
-    }
+        });
+    };
 
     const loginUser=async()=>{
         const newUser ={
             email: email,
             password: password
-        }
+        };
 
         try{
             const config={
                 headers:{
                     'content-type': 'application/json'
                 }
-            }
+            };
 
             const body=JSON.stringify(newUser);
-            const res= await axios.post('http://localhost:5000/api/login', body, config);
-
+            const res= await axios.post('/api/login', body, config);
+            //store user data and redirect
             localStorage.setItem('token', res.data.token);
-            history.push('/')
+            history.push('/');
         }catch(error){
+            //clear user data
             localStorage.removeItem('token');
             setErrorData({
                 ...errors,
                 errors:error.response.data.errors
-            })
+            });
         }
             authenticateUser();
-    }
+    };
     return(
         <div>
         <h2>Log In</h2>
@@ -73,10 +74,11 @@ const Login = ({authenticateUser}) => {
             <button onClick={() => loginUser()}>Log In</button>
         </div>
         <div>
-        {errors && errors.map(error=><div key={error.msg}>{error.msg}</div>)}
+        {errors && errors.map(error=>
+            <div key={error.msg}>{error.msg}</div>)}
         </div>
         </div>
-    )
-}
+    );
+};
 
 export default Login;
