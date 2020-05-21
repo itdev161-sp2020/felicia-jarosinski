@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 import axios from 'axios';
 import{useHistory} from 'react-router-dom';
 
@@ -20,8 +20,8 @@ const Register = ({authenticateUser}) => {
         setUserData({
             ...userData,
             [name]: value
-        })
-    }
+        });
+    };
 
     const registerUser = async () => {
         if(password !== passwordConfirm) {
@@ -32,17 +32,17 @@ const Register = ({authenticateUser}) => {
                 name: name, 
                 email: email, 
                 password: password
-            }
+            };
 
             try {
                 const config = {
                     headers: {
-                        'Content-Type': 'application/json'
+                        'content-Type': 'application/json'
                     }
-                }
+                };
 
                 const body = JSON.stringify(newUser);
-                const res = await axios.post('http://localhost:5000/api/users', body, config);
+                const res = await axios.post('/api/users', body, config);
                 //store user data and redirect
                 localStorage.setItem('token', res.data.token);
                 history.push('/')
@@ -53,12 +53,12 @@ const Register = ({authenticateUser}) => {
                 setErrorData({
                     ...errors,
                     errors:error.response.data.errors
-                })
+                });
             }
             authenticateUser();
         }
         
-    }
+    };
     return (
         <div>
         <h2>Register</h2>
@@ -104,7 +104,7 @@ const Register = ({authenticateUser}) => {
         </div>
         
         
-    )
-}
+    );
+};
 
 export default Register
