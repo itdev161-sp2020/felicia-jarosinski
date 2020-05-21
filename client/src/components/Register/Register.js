@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 import axios from 'axios';
 import{useHistory} from 'react-router-dom';
 
@@ -14,13 +14,14 @@ const Register = ({authenticateUser}) => {
 
     const {name, email, password, passwordConfirm} = userData;
     const{errors}=errorData;
+   
     const onChange = e => {
         const {name, value} = e.target;
         setUserData({
             ...userData,
             [name]: value
-        })
-    }
+        });
+    };
 
     const registerUser = async () => {
         if(password !== passwordConfirm) {
@@ -31,31 +32,33 @@ const Register = ({authenticateUser}) => {
                 name: name, 
                 email: email, 
                 password: password
-            }
+            };
 
             try {
                 const config = {
                     headers: {
-                        'Content-Type': 'application/json'
+                        'content-Type': 'application/json'
                     }
-                }
+                };
 
                 const body = JSON.stringify(newUser);
-                const res = await axios.post('http://localhost:5000/api/users', body, config);
+                const res = await axios.post('/api/users', body, config);
                 //store user data and redirect
                 localStorage.setItem('token', res.data.token);
                 history.push('/')
 
             } catch (error) {
+                //clear user data and set errors
                 localStorage.removeItem('token');
                 setErrorData({
                     ...errors,
                     errors:error.response.data.errors
-                })
+                });
             }
+            authenticateUser();
         }
-        authenticateUser();
-    }
+        
+    };
     return (
         <div>
         <h2>Register</h2>
@@ -95,12 +98,13 @@ const Register = ({authenticateUser}) => {
         <button onClick={() => registerUser()}>Register</button>
         </div>
         <div>
-        {errors && error.map(error => <div key ={error.msg}>{error.msg}</div>)}
+        {errors && errors.map(error => 
+            <div key ={error.msg}>{error.msg}</div>)}
         </div>
         </div>
         
         
     );
-}
+};
 
 export default Register
