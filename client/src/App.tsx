@@ -117,7 +117,7 @@ class App extends React.Component {
   onPostUpdated = post => {
     console.log('updated post: ', post);
     const newPosts = [...this.state.posts];
-    const index = newPosts.findIndex(p=> p._id === post._id);
+    const index = newPosts.findIndex(p => p._id === post._id);
 
     newPosts[index]= post;
 
@@ -151,7 +151,6 @@ class App extends React.Component {
               <li>
                 {user ? (
                   <Link to="" onClick={this.logOut}>
-                    {" "}
                     Log Out
                   </Link>
                 ) : (
