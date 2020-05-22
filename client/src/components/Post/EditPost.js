@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import {useHistory} from 'react-router-dom';
 import './styles.css';
-import { configure } from '@testing-library/react';
+
 
 const EditPost = ({ token, post, onPostUpdated}) => {
     let history = useHistory();
@@ -30,7 +30,7 @@ const EditPost = ({ token, post, onPostUpdated}) => {
             try{
                 const config ={
                     headers: {
-                        'content-type': 'application/json',
+                        'Content-type': 'application/json',
                         'x-auth-token': token
                     }
                 };
@@ -38,7 +38,7 @@ const EditPost = ({ token, post, onPostUpdated}) => {
                 //create the post
                 const body = JSON.stringify(newPost);
                 const res = await axios.put(
-                    `http://localhost:5000/api/posts/${post._id}`,
+                    `/api/posts/${post._id}`,
                     body,
                     config
                 );

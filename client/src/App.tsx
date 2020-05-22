@@ -38,6 +38,9 @@ class App extends React.Component {
         this.setState(
           {user: response.data.name, 
           token: token},
+          () => {
+            this.loadData();
+          }
           );
       })
       .catch((error)=>{
@@ -53,7 +56,7 @@ class App extends React.Component {
     if(token) {
       const config = {
         headers: {
-          'z-auth-token': token
+          'x-auth-token': token
         }
       };
       axios 

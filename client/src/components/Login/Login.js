@@ -31,7 +31,7 @@ const Login = ({authenticateUser}) => {
         try{
             const config={
                 headers:{
-                    'content-type': 'application/json'
+                    'Content-type': 'application/json'
                 }
             };
 
@@ -39,7 +39,7 @@ const Login = ({authenticateUser}) => {
             const res= await axios.post('/api/login', body, config);
             //store user data and redirect
             localStorage.setItem('token', res.data.token);
-            history.push('/')
+            history.push('/');
         }catch(error){
             //clear user data
             localStorage.removeItem('token');
