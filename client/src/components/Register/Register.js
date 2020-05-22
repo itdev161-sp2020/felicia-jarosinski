@@ -14,7 +14,7 @@ const Register = ({authenticateUser}) => {
 
     const {name, email, password, passwordConfirm} = userData;
     const{errors}=errorData;
-   
+
     const onChange = e => {
         const {name, value} = e.target;
         setUserData({
@@ -37,7 +37,7 @@ const Register = ({authenticateUser}) => {
             try {
                 const config = {
                     headers: {
-                        'content-Type': 'application/json'
+                        'Content-Type': 'application/json'
                     }
                 };
 

@@ -38,7 +38,7 @@ const CreatePost = ({ token, onPostCreated}) =>{
                 //create the post
                 const body = JSON.stringify(newPost);
                 const res = await axios.post(
-                    'http://localhost:5000/api/posts',
+                    '/api/posts',
                     body,
                     config
                 );
@@ -69,7 +69,7 @@ const CreatePost = ({ token, onPostCreated}) =>{
             onChange={e => onChange(e)}>
             </textarea>
             <button onClick={()=> create()}>Submit</button>
-            
+
         </div>
     );
 };
